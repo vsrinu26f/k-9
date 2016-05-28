@@ -9,6 +9,7 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 
+import com.fsck.k9.BuildConfig;
 import com.fsck.k9.K9;
 import com.fsck.k9.activity.misc.Attachment;
 
@@ -52,6 +53,14 @@ public class AttachmentContentLoader extends AsyncTaskLoader<Attachment> {
 
     @Override
     public Attachment loadInBackground() {
+        if (BuildConfig.DEBUG) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                // nvm
+            }
+        }
+
         Context context = getContext();
 
         try {

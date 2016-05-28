@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.provider.OpenableColumns;
 import android.util.Log;
 
+import com.fsck.k9.BuildConfig;
 import com.fsck.k9.K9;
 import com.fsck.k9.activity.misc.Attachment;
 import com.fsck.k9.activity.misc.Attachment.LoadingState;
@@ -45,6 +46,14 @@ public class AttachmentInfoLoader  extends AsyncTaskLoader<Attachment> {
 
     @Override
     public Attachment loadInBackground() {
+        if (BuildConfig.DEBUG) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                // nvm
+            }
+        }
+
         Uri uri = sourceAttachment.uri;
         String contentType = sourceAttachment.contentType;
 
